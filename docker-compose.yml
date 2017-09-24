@@ -1,0 +1,17 @@
+version: '2'
+services:
+  jenkins-dsl-test:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - jenkins-dsl-test-home:/var/jenkins_home
+      - ./:/jenkins-scripts
+    restart: always
+    environment:
+        JAVA_OPTS: -Djenkins.install.runSetupWizard=false
+    ports:
+      - "8080:8080"
+
+volumes:
+  jenkins-dsl-test-home:
